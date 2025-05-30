@@ -6,10 +6,12 @@ import productRouter from './routes/productRouter.js';
 import verifyJWT from './middleware/auth.js';  // Ensure the correct path
 import orderRouter from './routes/orderRouter.js';
 import dotenv, { config } from 'dotenv';
+import cors from "cors";
 dotenv,config()
 
 // mongodb+srv://admin:<db_password>@cluster0.etje0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-let app = express();
+const app = express();
+app.use(cors())
 
 mongoose.connect(process.env.MONGO_URL).then(
     ()=>{
