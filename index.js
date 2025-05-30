@@ -5,12 +5,13 @@ import userRouter from './routes/userRouter.js';
 import productRouter from './routes/productRouter.js';
 import verifyJWT from './middleware/auth.js';  // Ensure the correct path
 import orderRouter from './routes/orderRouter.js';
-
+import dotenv, { config } from 'dotenv';
+dotenv,config()
 
 // mongodb+srv://admin:<db_password>@cluster0.etje0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 let app = express();
 
-mongoose.connect("mongodb+srv://admin:123@cluster0.etje0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(
+mongoose.connect(process.env.MONGO_URL).then(
     ()=>{
         console.log("Connected to the database");
     }
