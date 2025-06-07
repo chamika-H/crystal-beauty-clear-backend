@@ -23,11 +23,13 @@ export function createProduct(req,res){
                 message : "Product saved successfully"
             })
         }
-    ).catch(
-        (err)=>{
-            res.status(500).json({
-                message : "Product not saved"
-            })
+    ).catch((err) => {
+    console.error("Error saving product:", err); // <-- logs the error to console
+    res.status(500).json({
+        message: "Product not saved"
+    });
+
+
         }
     )
 }
