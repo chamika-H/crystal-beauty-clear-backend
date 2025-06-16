@@ -46,6 +46,38 @@ export function getProducts(req,res){
         }
     )
 }
+// export async function getProductById(){
+//         const productId = req.params.id
+//         const product = await Product.findOne({productId : productId})
+//         if(product == null){
+//             res.status(404).json({
+//                 message : "Product not found"
+//             })
+//             return
+//         }
+//         res.json({
+//             product : product
+//         })
+// }
+export async function getProductById(req, res) {
+	try {
+		const productId = req.params.id;
+
+		const product = await Product.findOne({ productId: productId });
+
+		if (!product) {
+			return res.status(404).json({
+				message: "Product not found",
+			});
+		}
+
+		res.json({ product });
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ message: "Server error" });
+	}
+}
+
 export function deleteProduct(req,res){
     if(req.user == null){
         res.status(403).json({
